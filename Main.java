@@ -1,12 +1,56 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // Creamos los objetos usando nuestro molde
-        Mascota perfil1 = new Mascota("Fino", "Gato", "Control de vacunas y alimentación");
-        Mascota perfil2 = new Mascota("Perrito", "Perro", "Caniche mediano color apricot. Revisión de pelaje");
 
-        // Imprimimos por consola para verificar
-        System.out.println("--- Mi Diario de Mascotas ---");
-        System.out.println(perfil1.toString());
-        System.out.println(perfil2.toString());
+        Scanner scanner = new Scanner(System.in);
+        GestorMascotas miGestor = new GestorMascotas();
+
+        boolean bucleActivo = true;
+
+        while (bucleActivo == true) {
+
+            System.out.println("--- MENÚ ---");
+            System.out.println("¿Qué deseas hacer hoy?");
+            System.out.println("1. Registrar nueva mascota");
+            System.out.println("2. Listar mascotas registradas");
+            System.out.println("3. Salir");
+
+            int respuestaUsuarioInicial = scanner.nextInt();
+
+            switch (respuestaUsuarioInicial) {
+                case 1:
+                    System.out.println("--- REGISTRO DE MASCOTA ---");
+
+                    System.out.print("Introduce el ID: ");
+                    int id = Integer.parseInt(scanner.nextLine()); 
+
+                    System.out.print("Introduce el nombre: ");
+                    String nombre = scanner.nextLine();
+
+                    System.out.print("Introduce la especie: ");
+                    String especie = scanner.nextLine();
+
+                    System.out.print("Introduce las notas médicas: ");
+                    String medicas = scanner.nextLine();
+
+                    Mascota nuevaMascota = new Mascota(id, nombre, especie, medicas);
+                    miGestor.registrarMascota(nuevaMascota);
+                             
+                    break;
+
+                case 2:
+                    System.out.println("\n--- Mi Diario de Mascotas ---");
+                    miGestor.listarMascotas();
+                    
+                    break;
+
+                case 3:
+                    bucleActivo = false;
+                    break;
+            }
+        }
+
+        scanner.close(); 
     }
 }
