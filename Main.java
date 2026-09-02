@@ -14,9 +14,11 @@ public class Main {
             System.out.println("¿Qué deseas hacer hoy?");
             System.out.println("1. Registrar nueva mascota");
             System.out.println("2. Listar mascotas registradas");
-            System.out.println("3. Salir");
+            System.out.println("3. Buscar Mascota");
+            System.out.println("4. Salir");
 
             int respuestaUsuarioInicial = scanner.nextInt();
+            scanner.nextLine();
 
             switch (respuestaUsuarioInicial) {
                 case 1:
@@ -46,6 +48,15 @@ public class Main {
                     break;
 
                 case 3:
+
+                    System.out.print("Escribe el nombre de la mascota que deseas encontrar:");
+                    String nombreBuscado = scanner.nextLine();
+                    miGestor.buscarMascota(nombreBuscado);
+
+                    break;
+                    
+
+                case 4:
                     bucleActivo = false;
                     break;
             }
