@@ -8,6 +8,10 @@ public class Main {
 
         boolean bucleActivo = true;
 
+
+        VentanaPrincipal ventana = new VentanaPrincipal(miGestor);
+        ventana.setVisible(true);
+
         while (bucleActivo == true) {
 
             System.out.println("--- MENÚ ---");

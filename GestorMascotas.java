@@ -15,20 +15,18 @@ public class GestorMascotas {
         }
     }
 
-    public void buscarMascota(String nombreBuscado) {
+
+    public String buscarMascota(String nombreBuscado) {
     for (Mascota m : listaMascotas) {
-
         if (m.getNombre().equalsIgnoreCase(nombreBuscado)) {
-
-            System.out.println("ID: " + m.getId()
-                    + " | " + m.getNombre()
-                    + " | Especie: " + m.getEspecie()
-                    + " | Detalles: " + m.getNotasMedicas());
-
-            return;
+            
+            return "¡Encontrada!\n" + m.toString();
         }
     }
-
-    System.out.println("Nombre no encontrado");
+    
+    return "Mascota no encontrada.";
 }
+
+    
+
 }
