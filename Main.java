@@ -3,6 +3,12 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        try {
+        javax.swing.UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
         Scanner scanner = new Scanner(System.in);
         GestorMascotas miGestor = new GestorMascotas();
 
