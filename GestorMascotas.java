@@ -21,7 +21,7 @@ public class GestorMascotas {
     }
     
     return resultado; 
-}
+    }
 
 
     public String buscarMascota(String nombreBuscado) {
@@ -33,8 +33,10 @@ public class GestorMascotas {
     }
     
     return "Mascota no encontrada.";
-}
+    }
 
-    
 
-}
+
+    public boolean eliminarMascota(int idBuscado) {
+    return listaMascotas.removeIf(m -> m.getId() == idBuscado);
+}}

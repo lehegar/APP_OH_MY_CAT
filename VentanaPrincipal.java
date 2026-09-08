@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         JButton botonGuardar = new JButton("Guardar");
         JButton botonListar = new JButton("Listar Mascotas");
+        JButton botonEliminar = new JButton("Eliminar Mascota");
 
         campoId = anadirCampoFormulario(panelPrincipal, "ID:");
         campoNombreMascota = anadirCampoFormulario(panelPrincipal, "Nombre:");
@@ -69,10 +70,32 @@ public class VentanaPrincipal extends JFrame {
             JOptionPane.showMessageDialog(this, listado, "Lista de Mascotas", JOptionPane.INFORMATION_MESSAGE);
         });
 
+        botonEliminar.addActionListener(e -> {
+            try {
+                int id = Integer.parseInt(campoId.getText());
+                boolean eliminado = miGestor.eliminarMascota(id);
+
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(this, "¡Mascota eliminada con éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    campoId.setText(""); // Limpiamos el campo si se borró
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró ninguna mascota con ese ID.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }
+
+            catch(NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Error: El ID tiene que ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+        });
+
         panelPrincipal.add(etiquetaTitulo);
         panelPrincipal.add(botonBuscar);
         panelPrincipal.add(botonGuardar);
         panelPrincipal.add(botonListar);
+        panelPrincipal.add(botonEliminar);
 
         this.add(panelPrincipal);  
     }
