@@ -38,26 +38,35 @@ public class VentanaPrincipal extends JFrame {
         campoNotas = anadirCampoFormulario(panelPrincipal, "Notas Médicas:");
 
         botonGuardar.addActionListener(e -> {
-            try {
-                int id = Integer.parseInt(campoId.getText());
-                String nombreMascota = campoNombreMascota.getText();
-                String especie = campoEspecie.getText();
-                String notas = campoNotas.getText();
+    try {
+        int id = Integer.parseInt(campoId.getText());
+        String nombreMascota = campoNombreMascota.getText();
+        String especie = campoEspecie.getText();
+        String notas = campoNotas.getText();
 
-                Mascota nuevaMascota = new Mascota(id, nombreMascota, especie, notas);
-                miGestor.registrarMascota(nuevaMascota);
+        Mascota nuevaMascota = new Mascota(id, nombreMascota, especie, notas);
+        
+        
+        boolean guardado = miGestor.registrarMascota(nuevaMascota);
 
-                campoId.setText("");
-                campoNombreMascota.setText("");
-                campoEspecie.setText("");
-                campoNotas.setText(""); 
-                
-                JOptionPane.showMessageDialog(this, "¡Mascota guardada con éxito!", "Guardado", JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch(NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Error: El ID tiene que ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        });
+        
+        if (guardado) {
+            
+            campoId.setText("");
+            campoNombreMascota.setText("");
+            campoEspecie.setText("");
+            campoNotas.setText(""); 
+            
+            JOptionPane.showMessageDialog(this, "¡Mascota guardada con éxito!", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Error: Ya existe una mascota registrada con el ID " + id, "ID duplicado", JOptionPane.WARNING_MESSAGE);
+        }
+
+    } catch(NumberFormatException ex) {
+        JOptionPane.showMessageDialog(this, "Error: El ID tiene que ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+});
 
         botonBuscar.addActionListener(e -> {
             String nombre = campoNombreMascota.getText();

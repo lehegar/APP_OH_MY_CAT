@@ -5,7 +5,6 @@ public class Mascota {
     private String especie;
     private String notasMedicas;
 
-    // Constructor completo
     public Mascota(int id, String nombre, String especie, String notasMedicas) {
         this.id = id;
         this.nombre = nombre;
@@ -13,7 +12,6 @@ public class Mascota {
         this.notasMedicas = notasMedicas;
     }
 
-    // Getters y Setters
     public int getId() {
         return id;
     }

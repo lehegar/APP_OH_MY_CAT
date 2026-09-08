@@ -5,9 +5,21 @@ public class GestorMascotas {
     private ArrayList<Mascota> listaMascotas = new ArrayList<>();
 
     
-    public void registrarMascota(Mascota m) {
-        listaMascotas.add(m);
+    public boolean registrarMascota(Mascota nuevaMascota) {
+    
+    for (Mascota m : listaMascotas) {
+        if (m.getId() == nuevaMascota.getId()) {
+            return false; 
+        }
     }
+    
+    listaMascotas.add(nuevaMascota);
+    return true;
+    }
+
+
+
+
 
     public String listarMascotas() {
     
