@@ -9,11 +9,19 @@ public class GestorMascotas {
         listaMascotas.add(m);
     }
 
-    public void listarMascotas() {
-        for (Mascota m : listaMascotas) {
-            System.out.println(m.toString()); 
-        }
+    public String listarMascotas() {
+    
+    if (listaMascotas.isEmpty()) {
+        return "No hay mascotas registradas todavía.";
     }
+
+    String resultado = "--- LISTA DE MASCOTAS ---\n";
+    for (Mascota m : listaMascotas) {
+        resultado += m.toString() + "\n";
+    }
+    
+    return resultado; 
+}
 
 
     public String buscarMascota(String nombreBuscado) {

@@ -29,6 +29,7 @@ public class VentanaPrincipal extends JFrame {
         JLabel etiquetaTitulo = new JLabel("¡Bienvenido a Mi Diario de Mascotas!");
         JButton botonBuscar = new JButton("Buscar");
         JButton botonGuardar = new JButton("Guardar");
+        JButton botonListar = new JButton("Listar Mascotas");
 
         campoId = anadirCampoFormulario(panelPrincipal, "ID:");
         campoNombreMascota = anadirCampoFormulario(panelPrincipal, "Nombre:");
@@ -49,6 +50,8 @@ public class VentanaPrincipal extends JFrame {
                 campoNombreMascota.setText("");
                 campoEspecie.setText("");
                 campoNotas.setText(""); 
+                
+                JOptionPane.showMessageDialog(this, "¡Mascota guardada con éxito!", "Guardado", JOptionPane.INFORMATION_MESSAGE);
             }
             catch(NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Error: El ID tiene que ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -61,9 +64,15 @@ public class VentanaPrincipal extends JFrame {
             JOptionPane.showMessageDialog(this, resultado, "Resultado de la Búsqueda", JOptionPane.INFORMATION_MESSAGE);
         });
 
+        botonListar.addActionListener(e -> {
+            String listado = miGestor.listarMascotas();
+            JOptionPane.showMessageDialog(this, listado, "Lista de Mascotas", JOptionPane.INFORMATION_MESSAGE);
+        });
+
         panelPrincipal.add(etiquetaTitulo);
         panelPrincipal.add(botonBuscar);
         panelPrincipal.add(botonGuardar);
+        panelPrincipal.add(botonListar);
 
         this.add(panelPrincipal);  
     }
